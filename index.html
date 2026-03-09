@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aman Rana | AR/VR Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <style>
+    :root {
+      --cyan: #00f3ff;
+      --purple: #bc13fe;
+      --bg: #0a0a12;
+      --card: rgba(20, 20, 35, 0.85);
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--bg);
+      color: white;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+    #bg-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 40px 20px;
+      position: relative;
+      z-index: 2;
+    }
+    header {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .hero-img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 4px solid var(--cyan);
+      box-shadow: 0 0 25px var(--cyan);
+      margin-bottom: 30px;
+      object-fit: cover;
+      animation: float 4s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+    h1 {
+      font-size: 3.5rem;
+      letter-spacing: 4px;
+      background: linear-gradient(to right, var(--cyan), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 15px;
+    }
+    .subtitle {
+      font-size: 1.3rem;
+      color: var(--cyan);
+      margin-bottom: 20px;
+    }
+    header p {
+      opacity: 0.8;
+      margin-bottom: 30px;
+    }
+    .btn {
+      padding: 14px 35px;
+      border-radius: 50px;
+      border: 2px solid var(--cyan);
+      color: var(--cyan);
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background: var(--cyan);
+      color: black;
+      box-shadow: 0 0 25px var(--cyan);
+    }
+    section {
+      margin-top: 90px;
+      padding: 40px;
+      background: var(--card);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
+      transition: 0.3s;
+    }
+    section:hover {
+      transform: scale(1.01);
+    }
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 25px;
+      color: var(--purple);
+    }
+    .skills {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .skill {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      transition: 0.3s;
+    }
+    .skill:hover {
+      border: 1px solid var(--cyan);
+      box-shadow: 0 0 20px var(--cyan);
+    }
+    .skill i {
+      font-size: 30px;
+      margin-bottom: 10px;
+      color: var(--cyan);
+    }
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    .project {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 20px;
+      border-radius: 15px;
+      transition: 0.3s;
+    }
+    .project:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 25px rgba(0, 243, 255, 0.3);
+    }
+    .project img {
+      width: 100%;
+      border-radius: 10px;
+      margin: 10px 0;
+    }
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .badge {
+      border: 1px solid var(--cyan);
+      padding: 5px 12px;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      color: var(--cyan);
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .contact-card {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 25px;
+      border-radius: 12px;
+      text-align: center;
+      text-decoration: none;
+      color: white;
+      transition: 0.3s;
+    }
+    .contact-card:hover {
+      box-shadow: 0 0 20px var(--cyan);
+      border: 1px solid var(--cyan);
+    }
+    .contact-card i {
+      font-size: 28px;
+      margin-bottom: 10px;
+      color: var(--cyan);
+    }
+    footer {
+      text-align: center;
+      padding: 40px;
+      opacity: 0.6;
+    }
+    @media (max-width: 768px) {
+      h1 { font-size: 2.2rem; }
+      .hero-img { width: 130px; height: 130px; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="bg-canvas"></canvas>
+  <div class="container">
+    <header>
+      <img src="https://i.ibb.co/RGqJx96c/1000370680-transformed.jpg" class="hero-img" alt="Aman Rana">
+      <h1>Aman Rana</h1>
+      <p class="subtitle">AR/VR Game Environment Developer</p>
+      <p>Building the future of immersive reality, one pixel at a time.</p>
+    </header>
+
+    <section id="about">
+      <h2>Mission Profile</h2>
+      <p>AR/VR developer specializing in Unreal Engine environments, VR navigation systems, real-time lighting optimization, and immersive user interfaces.</p>
+    </section>
+
+    <section id="skills">
+      <h2>Augmented Skills</h2>
+      <div class="skills">
+        <div class="skill">
+          <i class="fas fa-gamepad"></i>
+          <h3>Unreal Engine</h3>
+        </div>
+        <div class="skill">
+          <i class="fas fa-vr-cardboard"></i>
+          <h3>VR Systems</h3>
+        </div>
+        <div class="skill">
+          <i class="fas fa-code"></i>
+          <h3>C++ / Blueprint</h3>
+        </div>
+        <div class="skill">
+          <i class="fas fa-cube"></i>
+          <h3>3D Modeling</h3>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="projects">
+        <div class="project">
+          <h3>VR Campus Navigation</h3>
+          <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800" alt="VR Campus">
+          <p>Large-scale VR campus environment with optimized lighting, navigation system, and Meta Quest performance optimization.</p>
+          <div class="badges">
+            <span class="badge">Unreal Engine 5</span>
+            <span class="badge">Blender</span>
+            <span class="badge">VR Optimization</span>
+          </div>
+        </div>
+        <div class="project">
+          <h3>Air Defence Missile Simulation</h3>
+          <img src="https://images.unsplash.com/photo-1620712014215-23a4a81ae702?w=800" alt="Defense Simulation">
+          <p>Defense simulation with missile targeting UI, projectile physics and real-time threat visualization.</p>
+          <div class="badges">
+            <span class="badge">UE5</span>
+            <span class="badge">Blueprint</span>
+            <span class="badge">Physics</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Establish Connection</h2>
+      <div class="contact-grid">
+        <a href="mailto:amanu0155@gmail.com" class="contact-card">
+          <i class="fas fa-envelope"></i>
+          <h3>Email</h3>
+          <p>amanu0155@gmail.com</p>
+        </a>
+        <a href="tel:+919815998939" class="contact-card">
+          <i class="fas fa-phone"></i>
+          <h3>Phone</h3>
+          <p>+91 9815998939</p>
+        </a>
+        <a href="https://linkedin.com/in/amanrana" class="contact-card">
+          <i class="fab fa-linkedin"></i>
+          <h3>LinkedIn</h3>
+          <p>Secure Handshake</p>
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      <p>© 2026 Aman Rana // System Status: Fully Operational</p>
+    </footer>
+  </div>
+
+  <script>
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('bg-canvas'), antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+
+    const starGeo = new THREE.BufferGeometry();
+    const starCount = 2000;
+    const posArray = new Float32Array(starCount * 3);
+    for (let i = 0; i < starCount * 3; i++) {
+      posArray[i] = (Math.random() - 0.5) * 1000;
+    }
+    starGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+    const starMaterial = new THREE.PointsMaterial({ size: 2, color: 0x00f3ff });
+    const stars = new THREE.Points(starGeo, starMaterial);
+    scene.add(stars);
+
+    const geo = new THREE.TorusKnotGeometry(10, 3, 100, 16);
+    const mat = new THREE.MeshBasicMaterial({ color: 0xbc13fe, wireframe: true });
+    const torus = new THREE.Mesh(geo, mat);
+    scene.add(torus);
+
+    camera.position.z = 50;
+
+    function animate() {
+      requestAnimationFrame(animate);
+      torus.rotation.x += 0.01;
+      torus.rotation.y += 0.01;
+      stars.rotation.y += 0.0005;
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  </script>
+</body>
+</html>
