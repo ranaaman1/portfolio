@@ -113,23 +113,23 @@
       margin-bottom: 25px;
       color: var(--purple);
     }
-    .skills {
+    .skills-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 20px;
     }
-    .skill {
+    .skill-card {
       background: rgba(255, 255, 255, 0.05);
       padding: 20px;
       border-radius: 12px;
       text-align: center;
       transition: 0.3s;
     }
-    .skill:hover {
+    .skill-card:hover {
       border: 1px solid var(--cyan);
       box-shadow: 0 0 20px var(--cyan);
     }
-    .skill i {
+    .skill-card i {
       font-size: 30px;
       margin-bottom: 10px;
       color: var(--cyan);
@@ -149,7 +149,7 @@
       transform: translateY(-5px);
       box-shadow: 0 0 25px rgba(0, 243, 255, 0.3);
     }
-    .project img {
+    .project img, .project video {
       width: 100%;
       border-radius: 10px;
       margin: 10px 0;
@@ -207,59 +207,83 @@
     <header>
       <img src="https://i.ibb.co/RGqJx96c/1000370680-transformed.jpg" class="hero-img" alt="Aman Rana">
       <h1>Aman Rana</h1>
-      <p class="subtitle">AR/VR Game Environment Developer</p>
+      <p class="subtitle">AR/VR Game Environment Developer & CRC Campus Placement Ambassador</p>
       <p>Building the future of immersive reality, one pixel at a time.</p>
     </header>
 
     <section id="about">
       <h2>Mission Profile</h2>
-      <p>AR/VR developer specializing in Unreal Engine environments, VR navigation systems, real-time lighting optimization, and immersive user interfaces.</p>
+      <p>AR/VR developer specializing in Unreal Engine environments, VR navigation systems, and real-time interaction systems. Currently serving as a <strong>CRC Campus Placement Ambassador</strong>, bridging the gap between talent and industry opportunities.</p>
     </section>
 
     <section id="skills">
-      <h2>Augmented Skills</h2>
-      <div class="skills">
-        <div class="skill">
+      <h2>Technical Arsenal</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
           <i class="fas fa-gamepad"></i>
-          <h3>Unreal Engine</h3>
+          <h3>Game Engines</h3>
+          <p>Unity, Unreal Engine</p>
         </div>
-        <div class="skill">
-          <i class="fas fa-vr-cardboard"></i>
-          <h3>VR Systems</h3>
-        </div>
-        <div class="skill">
-          <i class="fas fa-code"></i>
-          <h3>C++ / Blueprint</h3>
-        </div>
-        <div class="skill">
+        <div class="skill-card">
           <i class="fas fa-cube"></i>
           <h3>3D Modeling</h3>
+          <p>Blender, Twinmotion, 3ds Max</p>
+        </div>
+        <div class="skill-card">
+          <i class="fas fa-code"></i>
+          <h3>Programming</h3>
+          <p>C, C++, C#, JavaScript</p>
+        </div>
+        <div class="skill-card">
+          <i class="fas fa-vr-cardboard"></i>
+          <h3>Specialization</h3>
+          <p>Environment Modeling, Level Design</p>
         </div>
       </div>
     </section>
 
     <section id="projects">
-      <h2>Projects</h2>
+      <h2>Featured Deployments</h2>
       <div class="projects">
         <div class="project">
-          <h3>VR Campus Navigation</h3>
-          <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800" alt="VR Campus">
-          <p>Large-scale VR campus environment with optimized lighting, navigation system, and Meta Quest performance optimization.</p>
+          <h3>VR Campus Navigation System</h3>
+          <p><em>Academic Project - Chandigarh University</em></p>
+          <video controls poster="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800">
+            <source src="YOUR_VIDEO_URL_HERE" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <p>Large-scale, fully navigable VR campus infrastructure with accurate spatial layouts and optimized real-time rendering for VR headsets.</p>
           <div class="badges">
             <span class="badge">Unreal Engine 5</span>
             <span class="badge">Blender</span>
-            <span class="badge">VR Optimization</span>
+            <span class="badge">VR Systems</span>
           </div>
         </div>
         <div class="project">
           <h3>Air Defence Missile Simulation</h3>
           <img src="https://images.unsplash.com/photo-1620712014215-23a4a81ae702?w=800" alt="Defense Simulation">
-          <p>Defense simulation with missile targeting UI, projectile physics and real-time threat visualization.</p>
+          <p>High-fidelity 3D asset development and VR training module for defense-grade missile targeting and acquisition simulation.</p>
           <div class="badges">
             <span class="badge">UE5</span>
             <span class="badge">Blueprint</span>
             <span class="badge">Physics</span>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="leadership">
+      <h2>Leadership & Impact</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <i class="fas fa-user-tie"></i>
+          <h3>CRC Ambassador</h3>
+          <p>Campus Placement Coordinator</p>
+        </div>
+        <div class="skill-card">
+          <i class="fas fa-users"></i>
+          <h3>Secretary</h3>
+          <p>Technical Society & Cultural Club</p>
         </div>
       </div>
     </section>
